@@ -50,7 +50,9 @@
     </div>
   </div>  
   <% else %>
-  <h2>Your cart is currently empty</h2>
-  <%= link_to 'Keep Shopping', root_path %>
+  <h3>Your cart is currently empty</h3>
+   <%= link_to root_path, class: 'btn btn-primary' do %>
+      Keep Shopping
+    <% end %>
   <% end %>
 </section>
