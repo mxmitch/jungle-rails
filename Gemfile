@@ -35,6 +35,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'stripe'
 gem 'faker'
+gem 'date_format'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

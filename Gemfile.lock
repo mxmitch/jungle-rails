@@ -53,6 +53,7 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
     concurrent-ruby (1.0.2)
+    date_format (0.3.3)
     debug_inspector (0.0.2)
     domain_name (0.5.20160615)
       unf (>= 0.0.5, < 1.0.0)
@@ -194,6 +195,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
   carrierwave
+  date_format
   dotenv-rails
   faker
   font-awesome-rails
