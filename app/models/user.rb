@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
     # user = User.where("lower(email) = ?, email")
     
-    user = User.find_by_email(email)
+    user = User.find_by(email: email.downcase)
     if user && user.authenticate(password)
       user
     else

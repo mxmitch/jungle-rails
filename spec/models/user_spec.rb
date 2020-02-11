@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
       expect(@user).to_not be_valid
     end
     
-    it "is not valid without a password" do
+    it "is not valid without a password and password confirmation" do
       @user = User.new(name: "name", email: "me@me.com", password: nil, password_confirmation: nil ) 
       @user.valid?
       @user.errors.full_messages
@@ -40,7 +40,18 @@ RSpec.describe User, type: :model do
       @user = User.new(name: "name", email: "me@me.com", password: "1234", password_confirmation: "1233" ) 
       @user.valid?
       @user.errors.full_messages
+      expect(@user.password).to_not eq(@user.password_confirmation)
       expect(@user).to_not be_valid
+    end
+
+    it "is not valid if email already exists (case insensitive)" do
+      @user1 = User.new(name: "name", email: "me@me.com", password: "1234", password_confirmation: "1233" ) 
+      @user1.valid?
+      @user2 = User.new(name: "name", email: "ME@me.com", password: "1234", password_confirmation: "1233" ) 
+      @user2.valid?
+   
+      @user2.errors.full_messages
+      expect(@user2).to_not be_valid
     end
 
   end
