@@ -35,6 +35,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'stripe'
 gem 'faker'
+gem 'spring-commands-rspec', group: :development
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
