@@ -11,13 +11,6 @@ require 'rspec/rails'
 require "capybara/rails"
 require "capybara/rspec"
 require "capybara/poltergeist" # Add this line to require poltergeist
-<<<<<<< HEAD
-
-# Specs flagged with `js: true` will use Capybara's JS driver. Set
-# that JS driver to :poltergeist
-Capybara.javascript_driver = :poltergeist
-=======
->>>>>>> f048e84e41cda8e137b57525c447ce9d13b6c0d6
 
 # Specs flagged with `js: true` will use Capybara's JS driver. Set
 # that JS driver to :poltergeist
