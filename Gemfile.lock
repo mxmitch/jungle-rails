@@ -38,6 +38,10 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    annotate (3.0.3)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 14.0)
+    ansi (1.5.0)
     arel (6.0.3)
     autoprefixer-rails (6.3.7)
       execjs
@@ -79,6 +83,10 @@ GEM
       railties (>= 3.2, < 5.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    guard-compat (1.2.1)
+    guard-minitest (2.4.6)
+      guard-compat (~> 1.2)
+      minitest (>= 3.0)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
@@ -97,9 +105,17 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mini_backtrace (0.1.3)
+      minitest (> 1.2.0)
+      rails (>= 2.3.3)
     mini_mime (1.0.2)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
+    minitest-reporters (1.4.2)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     monetize (1.1.0)
       money (~> 6.5.0)
     money (6.5.1)
@@ -182,6 +198,7 @@ GEM
       rspec-mocks (~> 3.9.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.2)
+    ruby-progressbar (1.10.1)
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -232,6 +249,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   bcrypt (~> 3.1.7)
   bootstrap-sass (~> 3.3.6)
   byebug
@@ -241,8 +259,11 @@ DEPENDENCIES
   dotenv-rails
   faker
   font-awesome-rails
+  guard-minitest
   jbuilder (~> 2.0)
   jquery-rails
+  mini_backtrace
+  minitest-reporters
   money-rails
   newrelic_rpm
   pg

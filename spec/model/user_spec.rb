@@ -43,6 +43,12 @@ RSpec.describe User, type: :model do
       expect(@user).to_not be_valid
     end
 
+    it "is not valid if email already exists (case insensitive)" do
+      @user1 = User.create(name: "name", email: "me@me.com", password: "1234", password_confirmation: "1234" ) 
+      @user2 = User.create(name: "name", email: "ME@me.com", password: "1234", password_confirmation: "1234" ) 
+      expect(@user2).to_not be_valid
+    end
+
   end
 
   describe '.authenticate_with_credentials' do
@@ -50,13 +56,30 @@ RSpec.describe User, type: :model do
       @user = User.create(name:"name", email: "example@domain.com", password:"1234", password_confirmation:"1234")
       expect(User.authenticate_with_credentials("example@domain.com","1234")).to be_present
     end
-    it "should be valid when spaces are put around email" do
+
+    it "should be valid when given a email with spaces around it" do
       @user = User.create(name:"name", email: "example@domain.com", password:"1234", password_confirmation:"1234")
-      expect(User.authenticate_with_credentials("   example@domain.com   ","1234")).to be_present
+      expect(User.authenticate_with_credentials("   example@domain.com  ","1234")).to be_present
     end
-    it "should be valid using mixed upper and lower casing" do
-      @user = User.create(name:"name", email: "eXample@domain.com", password:"1234", password_confirmation:"1234")
+
+    it "should be valid when given a email (case insensitive)" do
+      @user = User.create(name:"name", email: "example@domain.com", password:"1234", password_confirmation:"1234")
       expect(User.authenticate_with_credentials("EXAMPLe@DOMAIN.CoM","1234")).to be_present
+    end
+  end
+
+  describe "#downcase_email" do
+    it "makes the email attribute lower case" do
+      @user = User.new(name:"name", email: "EXAMPLe@DOMAIN.CoM", password:"1234", password_confirmation:"1234")
+      expect{ @user.downcase_email }.to change{ @user.email }.
+      from("EXAMPLe@DOMAIN.CoM").
+      to("example@domain.com")
+    end
+
+    it "downcases an email before saving" do
+      @user = User.new(name:"name", email: "EXAMPLe@DOMAIN.CoM", password:"1234", password_confirmation:"1234")
+      @user.save!
+      expect(@user.email).to eq("example@domain.com")
     end
   end
 end
