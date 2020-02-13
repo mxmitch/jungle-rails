@@ -5,7 +5,7 @@
   </header>
 
   <div class="order-summary jumbotron">
-    <h4>Thank you for your order! <%= @order.email %></h4><br>
+    <h4>Thank you for your order! <% if @order.email %><%= @order.email%><% end%></h4><br>
     <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -27,7 +27,7 @@
             TOTAL:
           </th>
           <th>
-            <%= @order.total_cents / 100.0 %>
+            <%= humanized_money_with_symbol @order.total_cents / 100.0 %>
           </th>
         </tr>
       </tfoot>
